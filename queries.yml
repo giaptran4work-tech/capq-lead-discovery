@@ -1,0 +1,71 @@
+# Search queries for the lead-discovery engine.
+#
+# Each query is searched as `site:linkedin.com/posts <query>` — the tool adds
+# the site: prefix. The aim: LinkedIn posts where an emerging fund manager
+# publicly signals they are raising a fund.
+
+# DEMO set — small and high-signal. The default run uses these (~6 searches),
+# so a run can never accidentally spend the monthly SerpAPI quota.
+demo:
+  - '"held our first close"'
+  - '"raising our first fund"'
+  - '"launching our first fund"'
+  - '"first close" "emerging manager"'
+  - '"solo GP" "raising"'
+  - '"anchor LP"'
+
+# FULL set — the complete sweep. Used only with --full (and a raised
+# --max-searches). Tier 1 = first-person raise announcements (highest signal);
+# Tier 2/3 = identity + LP-relationship phrases.
+full:
+  - '"held our first close"'
+  - '"raising our first fund"'
+  - '"raising our Fund I"'
+  - '"closed our first fund"'
+  - '"first close of our fund"'
+  - '"launching our first fund"'
+  - '"our fund is now open"'
+  - '"excited to announce the first close"'
+  - '"first close" "emerging manager"'
+  - '"first-time fund manager" "raising"'
+  - '"solo GP" "raising"'
+  - '"emerging manager" "anchor LP"'
+  - '"debut fund" "raising"'
+  - '"anchor LP"'
+  - '"soft commitments" fund'
+  - '"spinning out" "raising a fund"'
+
+# SCORING — a contact's score = (signal hits x 2) - (noise hits).
+# Signal phrases mark a genuine raise; noise phrases mark how-to / advisory
+# / service-provider content, or large established funds.
+signal_keywords:
+  - first close
+  - raising our
+  - our first fund
+  - fund i
+  - emerging manager
+  - first-time fund manager
+  - solo gp
+  - anchor lp
+  - anchor investor
+  - lp commitments
+  - soft commitments
+  - debut fund
+  - launching our
+  - spinning out
+  - now raising
+
+noise_keywords:
+  - guide
+  - tips
+  - how to
+  - webinar
+  - must-dos
+  - must do
+  - playbook
+  - course
+  - newsletter
+  - hiring
+  - fund iv
+  - fund v
+  - fund vi
